@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://brr3yjfyrxahx"]
+
+[ext_resource type="Script" uid="uid://06b3t73f3vi8" path="res://Scenes/claw.gd" id="1_bcojo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcojo"]
+albedo_color = Color(0.7059392, 3.5376102e-06, 3.85046e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bcojo"]
+material = SubResource("StandardMaterial3D_bcojo")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8412e"]
+
+[node name="Claw" type="CharacterBody3D" unique_id=1510437078]
+axis_lock_linear_y = true
+motion_mode = 1
+script = ExtResource("1_bcojo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1531312122]
+mesh = SubResource("BoxMesh_bcojo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1549668758]
+shape = SubResource("BoxShape3D_8412e")

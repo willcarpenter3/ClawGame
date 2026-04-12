@@ -10,13 +10,51 @@ material = SubResource("StandardMaterial3D_bcojo")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8412e"]
 
-[node name="Claw" type="CharacterBody3D" unique_id=1510437078]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bcojo"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8412e"]
+
+[node name="Claw" type="Node3D" unique_id=211222074]
+
+[node name="ClawMover" type="CharacterBody3D" parent="." unique_id=1510437078]
 axis_lock_linear_y = true
 motion_mode = 1
 script = ExtResource("1_bcojo")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1531312122]
+[node name="Joint" type="Generic6DOFJoint3D" parent="ClawMover" unique_id=1790604705]
+node_a = NodePath("..")
+node_b = NodePath("../../ClawArm")
+angular_limit_x/upper_angle = 0.7853982
+angular_limit_x/lower_angle = -0.7853982
+angular_limit_y/upper_angle = 0.7853982
+angular_limit_y/lower_angle = -0.7853982
+angular_limit_z/upper_angle = 0.7853982
+angular_limit_z/lower_angle = -0.7853982
+angular_limit_z/restitution = 0.01
+angular_spring_x/enabled = true
+angular_spring_x/stiffness = 1000.0
+angular_spring_x/damping = 200.0
+angular_spring_y/enabled = true
+angular_spring_y/stiffness = 1000.0
+angular_spring_y/damping = 200.0
+angular_spring_z/enabled = true
+angular_spring_z/stiffness = 1000.0
+angular_spring_z/damping = 200.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ClawMover" unique_id=1531312122]
 mesh = SubResource("BoxMesh_bcojo")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1549668758]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClawMover" unique_id=1549668758]
 shape = SubResource("BoxShape3D_8412e")
+
+[node name="ClawArm" type="RigidBody3D" parent="." unique_id=1358909321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9015355, 0)
+mass = 3.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClawArm" unique_id=795526325]
+shape = SubResource("CapsuleShape3D_bcojo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ClawArm" unique_id=574313364]
+mesh = SubResource("CylinderMesh_8412e")

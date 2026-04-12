@@ -8,10 +8,6 @@ size = Vector3(50, 1, 50)
 [sub_resource type="BoxMesh" id="BoxMesh_mlf6e"]
 size = Vector3(50, 1, 50)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x87qo"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_b6fju"]
-
 [node name="Game" type="Node3D" unique_id=802390332]
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=373636987]
@@ -32,35 +28,3 @@ size = 10.0
 [node name="Claw" parent="." unique_id=1510437078 node_paths=PackedStringArray("camera") instance=ExtResource("1_x87qo")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 50, 0)
 camera = NodePath("../Camera3D")
-
-[node name="Joint" type="Generic6DOFJoint3D" parent="Claw" unique_id=57843246]
-node_a = NodePath("..")
-node_b = NodePath("../../ClawArm")
-angular_limit_x/upper_angle = 0.7853982
-angular_limit_x/lower_angle = -0.7853982
-angular_limit_y/upper_angle = 0.7853982
-angular_limit_y/lower_angle = -0.7853982
-angular_limit_z/upper_angle = 0.7853982
-angular_limit_z/lower_angle = -0.7853982
-angular_limit_z/restitution = 0.01
-angular_spring_x/enabled = true
-angular_spring_x/stiffness = 1000.0
-angular_spring_x/damping = 200.0
-angular_spring_y/enabled = true
-angular_spring_y/stiffness = 1000.0
-angular_spring_y/damping = 200.0
-angular_spring_z/enabled = true
-angular_spring_z/stiffness = 1000.0
-angular_spring_z/damping = 200.0
-
-[node name="ClawArm" type="RigidBody3D" parent="." unique_id=1096100475]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.949886, 0)
-mass = 3.0
-center_of_mass_mode = 1
-center_of_mass = Vector3(0, -2, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ClawArm" unique_id=2060561572]
-shape = SubResource("CapsuleShape3D_x87qo")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ClawArm" unique_id=786802483]
-mesh = SubResource("CylinderMesh_b6fju")

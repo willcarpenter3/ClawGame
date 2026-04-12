@@ -25,6 +25,5 @@ transform = Transform3D(1, 0, 0, 0, 0.34803215, 0.9374826, 0, -0.9374826, 0.3480
 transform = Transform3D(1, 0, 0, 0, 0.7036676, 0.7105294, 0, -0.7105294, 0.7036676, 0, 54.128693, 15.829971)
 size = 10.0
 
-[node name="Claw" parent="." unique_id=1510437078 node_paths=PackedStringArray("camera") instance=ExtResource("1_x87qo")]
+[node name="Claw" parent="." unique_id=1510437078 instance=ExtResource("1_x87qo")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 50, 0)
-camera = NodePath("../Camera3D")

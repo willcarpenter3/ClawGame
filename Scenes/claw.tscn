@@ -17,9 +17,13 @@ material = SubResource("StandardMaterial3D_bcojo")
 [node name="Claw" type="Node3D" unique_id=211222074]
 
 [node name="ClawMover" type="CharacterBody3D" parent="." unique_id=1510437078]
-axis_lock_linear_y = true
 motion_mode = 1
 script = ExtResource("1_bcojo")
+grab_speed = 15
+grab_distance = 20.0
+raise_speed = 15
+return_position = Vector3(-23.359, 0, 22.198)
+return_speed = 20
 
 [node name="Joint" type="Generic6DOFJoint3D" parent="ClawMover" unique_id=1790604705]
 node_a = NodePath("..")

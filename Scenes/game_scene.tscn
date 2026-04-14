@@ -22,8 +22,11 @@ mesh = SubResource("BoxMesh_mlf6e")
 transform = Transform3D(1, 0, 0, 0, 0.34803215, 0.9374826, 0, -0.9374826, 0.34803215, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1305866431]
-transform = Transform3D(1, 0, 0, 0, 0.7036676, 0.7105294, 0, -0.7105294, 0.7036676, 0, 54.128693, 15.829971)
+transform = Transform3D(1, 0, 0, 0, 0.84071785, 0.5414735, 0, -0.5414735, 0.84071785, 0, 54.128693, 46.08824)
 size = 10.0
 
 [node name="Claw" parent="." unique_id=1510437078 instance=ExtResource("1_x87qo")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 50, 0)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1162737679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.359283, 50, 22.198292)

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cm43w2emlhhue"]
+
+[ext_resource type="Script" uid="uid://5fx7j5u3hx8r" path="res://Scenes/grabbable_object.gd" id="1_hebtc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e4wic"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hebtc"]
+
+[node name="GrabbableObject" type="RigidBody3D" unique_id=1209867729]
+script = ExtResource("1_hebtc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1570478684]
+shape = SubResource("SphereShape3D_e4wic")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1290511916]
+mesh = SubResource("SphereMesh_hebtc")
+
+[node name="GrabJoint" type="Generic6DOFJoint3D" parent="." unique_id=1940955548]

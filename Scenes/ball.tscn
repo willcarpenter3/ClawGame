@@ -19,3 +19,5 @@ shape = SubResource("SphereShape3D_k285w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2062106774]
 mesh = SubResource("SphereMesh_k285w")
+
+[node name="GrabJoint" type="Generic6DOFJoint3D" parent="." unique_id=1040025572]

@@ -14,15 +14,16 @@ material = SubResource("StandardMaterial3D_bcojo")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_8412e"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_bcojo"]
+
 [node name="Claw" type="Node3D" unique_id=211222074]
 
-[node name="ClawMover" type="CharacterBody3D" parent="." unique_id=1510437078]
+[node name="ClawMover" type="CharacterBody3D" parent="." unique_id=1510437078 node_paths=PackedStringArray("grab_arm")]
 motion_mode = 1
 script = ExtResource("1_bcojo")
-grab_speed = 15
-grab_distance = 20.0
+grab_arm = NodePath("../ClawArm")
 raise_speed = 15
-return_position = Vector3(-23.359, 0, 22.198)
+return_position = Vector3(-12, 15, 12)
 return_speed = 20
 
 [node name="Joint" type="Generic6DOFJoint3D" parent="ClawMover" unique_id=1790604705]
@@ -51,6 +52,13 @@ mesh = SubResource("BoxMesh_bcojo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ClawMover" unique_id=1549668758]
 shape = SubResource("BoxShape3D_8412e")
 
+[node name="DropTimer" type="Timer" parent="ClawMover" unique_id=960163860]
+one_shot = true
+
+[node name="ReleaseTimer" type="Timer" parent="ClawMover" unique_id=64997039]
+wait_time = 3.0
+one_shot = true
+
 [node name="ClawArm" type="RigidBody3D" parent="." unique_id=1358909321]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9015355, 0)
 mass = 3.0
@@ -62,3 +70,13 @@ shape = SubResource("CapsuleShape3D_bcojo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ClawArm" unique_id=574313364]
 mesh = SubResource("CylinderMesh_8412e")
+
+[node name="GrabDetection" type="Area3D" parent="ClawArm" unique_id=1410033351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4195728, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClawArm/GrabDetection" unique_id=504930990]
+shape = SubResource("BoxShape3D_bcojo")
+
+[connection signal="timeout" from="ClawMover/DropTimer" to="ClawMover" method="_on_drop_timer_timeout"]
+[connection signal="timeout" from="ClawMover/ReleaseTimer" to="ClawMover" method="_on_release_timer_timeout"]
+[connection signal="body_entered" from="ClawArm/GrabDetection" to="ClawMover" method="_on_grab_detection_body_entered"]

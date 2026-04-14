@@ -1,4 +1,4 @@
-extends RigidBody3D
+extends GrabbableObject
 
 @onready var mesh := $MeshInstance3D
 

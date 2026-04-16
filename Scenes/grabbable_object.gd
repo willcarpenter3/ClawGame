@@ -10,3 +10,6 @@ func try_grab(body: RigidBody3D) -> Generic6DOFJoint3D:
 	grab_joint.node_b = $".".get_path()
 	return grab_joint
 	
+func release():
+	grab_joint.node_a = ""
+	grab_joint.node_b = ""

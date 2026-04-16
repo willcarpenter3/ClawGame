@@ -41,4 +41,12 @@ autostart = true
 [node name="Claw" parent="." unique_id=211222074 instance=ExtResource("4_s7hoj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
 
+[node name="ClawMover" parent="Claw" index="0" unique_id=1510437078]
+return_speed = 30
+
+[node name="DropTimer" parent="Claw/ClawMover" index="3" unique_id=960163860]
+wait_time = 0.75
+
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
+
+[editable path="Claw"]

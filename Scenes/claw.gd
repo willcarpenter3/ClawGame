@@ -16,6 +16,9 @@ enum MovementMode {Manual, Grabbing, Raising, Returning}
 @export var return_speed := 10
 @onready var release_timer: Timer = $ReleaseTimer
 
+@export var hinges : Array[HingeJoint3D]
+@onready var grab_timer : Timer = $GrabTimer
+
 #Private Movement Variables
 var movement_mode: MovementMode = MovementMode.Manual
 var target_velocity: Vector3 = Vector3.ZERO
@@ -64,6 +67,10 @@ func calc_manual_movement(direction: Vector3):
 	
 	
 func calc_grab_movement():
+	if grab_timer.time_left > 0:
+		target_velocity = Vector3.ZERO
+		return
+		
 	target_velocity.y = -drop_speed
 	
 func calc_raise_movement():
@@ -96,7 +103,7 @@ func initiate_manual_control():
 	movement_mode = MovementMode.Manual
 
 func initiate_drop():
-	print("Grabbing!")
+	print("Dropping!")
 	target_velocity = Vector3.ZERO
 	movement_mode = MovementMode.Grabbing
 	drop_timer.start()
@@ -111,15 +118,34 @@ func initiate_return():
 	target_velocity = Vector3.ZERO
 	movement_mode = MovementMode.Returning
 	print("Returning!")
+	
+func initiate_grab():
+	print("Grabbing!")
+	for hinge in hinges:
+		hinge.set("motor/target_velocity", 50)
+	grab_timer.start()
+	
 
 func _on_drop_timer_timeout() -> void:
-	initiate_raise()
+	initiate_grab()
 
 func _on_grab_detection_body_entered(body: Node3D) -> void:
 	if body is GrabbableObject and current_grab_joint == null and movement_mode == MovementMode.Grabbing:
 		current_grab_joint = body.try_grab(grab_arm)
 
 func _on_release_timer_timeout() -> void:
+	for hinge in hinges:
+		hinge.set("motor/target_velocity", -50)
+		
 	if current_grab_joint:
-		current_grab_joint.queue_free()
+		current_grab_joint.get_parent_node_3d().release()
+		current_grab_joint = null
 	initiate_manual_control()
+
+
+func _on_grab_timer_timeout() -> void:
+	initiate_raise()
+
+func _on_grab_detection_body_exited(body: Node3D) -> void:
+	if body is GrabbableObject:
+		body.release()

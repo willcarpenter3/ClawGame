@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b87b0124hkkwd"]
+
+[ext_resource type="Script" uid="uid://pka3ubsr5shd" path="res://Scenes/game_ui.gd" id="1_gek4i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ftohb"]
+font_size = 72
+
+[node name="GameUI" type="CanvasLayer" unique_id=595448203]
+script = ExtResource("1_gek4i")
+
+[node name="Label" type="Label" parent="." unique_id=1309613982]
+offset_right = 359.0
+offset_bottom = 136.0
+text = "Score: X"
+label_settings = SubResource("LabelSettings_ftohb")

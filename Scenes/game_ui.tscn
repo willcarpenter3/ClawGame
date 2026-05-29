@@ -11,5 +11,5 @@ script = ExtResource("1_gek4i")
 [node name="Label" type="Label" parent="." unique_id=1309613982]
 offset_right = 359.0
 offset_bottom = 136.0
-text = "Score: X"
+text = "Score: 0"
 label_settings = SubResource("LabelSettings_ftohb")

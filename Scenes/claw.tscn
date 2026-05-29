@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://brr3yjfyrxahx"]
 
 [ext_resource type="Script" uid="uid://06b3t73f3vi8" path="res://Scenes/claw.gd" id="1_bcojo"]
+[ext_resource type="Script" uid="uid://v1gh8drvpg6a" path="res://Scenes/claw_parent.gd" id="1_rnn4h"]
 [ext_resource type="PackedScene" uid="uid://bnxfs0okccxw2" path="res://Scenes/claw_spoke.tscn" id="2_p07vi"]
+[ext_resource type="Resource" uid="uid://be1ynoa4fcjw" path="res://Resources/claw_stats.tres" id="2_rnn4h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcojo"]
 albedo_color = Color(0.7059392, 3.5376102e-06, 3.85046e-07, 1)
@@ -19,14 +21,13 @@ material = SubResource("StandardMaterial3D_bcojo")
 size = Vector3(0.32388306, 0.2642212, 0.29541016)
 
 [node name="Claw" type="Node3D" unique_id=211222074]
+script = ExtResource("1_rnn4h")
+stats = ExtResource("2_rnn4h")
 
 [node name="ClawMover" type="CharacterBody3D" parent="." unique_id=1510437078 node_paths=PackedStringArray("grab_arm", "hinges")]
 motion_mode = 1
 script = ExtResource("1_bcojo")
 grab_arm = NodePath("../ClawArm")
-raise_speed = 15
-return_position = Vector3(-12, 15, 12)
-return_speed = 20
 hinges = [NodePath("../Hinge1"), NodePath("../Hinge2"), NodePath("../Hinge3")]
 
 [node name="Joint" type="Generic6DOFJoint3D" parent="ClawMover" unique_id=1790604705]

@@ -6,3 +6,4 @@ func _on_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, 
 	if body is GrabbableObject:
 		points += 1
 		$"../GameUI".update_score(points)
+		$"../Claw".stats.speed += 1

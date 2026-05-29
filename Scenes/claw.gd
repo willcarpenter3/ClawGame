@@ -2,22 +2,16 @@ extends CharacterBody3D
 
 enum MovementMode {Manual, Grabbing, Raising, Returning}
 
-@export var speed := 10.0
 @export var camera: Camera3D
-
-@export var drop_speed := 10
-@onready var drop_timer: Timer = $DropTimer
-
 @export var grab_arm : RigidBody3D
-
-@export var raise_speed := 10
-
-@export var return_position := Vector3(-30, 50, -30)
-@export var return_speed := 10
-@onready var release_timer: Timer = $ReleaseTimer
-
 @export var hinges : Array[HingeJoint3D]
+
+@onready var drop_timer: Timer = $DropTimer
+@onready var release_timer: Timer = $ReleaseTimer
 @onready var grab_timer : Timer = $GrabTimer
+
+#Loaded by parent
+@onready var stats = owner.stats
 
 #Private Movement Variables
 var movement_mode: MovementMode = MovementMode.Manual
@@ -62,8 +56,8 @@ func calc_manual_movement(direction: Vector3):
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 
-	target_velocity.x = direction.x * speed
-	target_velocity.z = direction.z * speed
+	target_velocity.x = direction.x * stats.speed
+	target_velocity.z = direction.z * stats.speed
 	
 	
 func calc_grab_movement():
@@ -71,31 +65,31 @@ func calc_grab_movement():
 		target_velocity = Vector3.ZERO
 		return
 		
-	target_velocity.y = -drop_speed
+	target_velocity.y = -stats.drop_speed
 	
 func calc_raise_movement():
 	if position.y >= target_raise_location.y:
 		position.y = target_raise_location.y
 		initiate_return()
 	else:
-		target_velocity.y = raise_speed
+		target_velocity.y = stats.speed * stats.raise_speed_mult
 		
 func calc_return_movement():
 	if release_timer.time_left > 0:
 		target_velocity = Vector3.ZERO
 		return
 	
-	var distance = global_position.distance_to(return_position)
+	var distance = global_position.distance_to(stats.return_position)
 	
 	print(distance)
 	if distance <= 0.5: 
 		release_timer.start()
 	
-	var direction = return_position - global_position
+	var direction = stats.return_position - global_position
 	direction = direction.normalized()
 	
-	target_velocity.x = direction.x * return_speed
-	target_velocity.z = direction.z * return_speed
+	target_velocity.x = direction.x * stats.speed * stats.return_speed_mult
+	target_velocity.z = direction.z * stats.speed * stats.return_speed_mult
 	
 func initiate_manual_control():
 	print("You're back in control!")

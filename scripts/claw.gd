@@ -1,3 +1,4 @@
+class_name Claw
 extends CharacterBody3D
 
 enum MovementMode {Manual, Grabbing, Raising, Returning}
@@ -6,12 +7,11 @@ enum MovementMode {Manual, Grabbing, Raising, Returning}
 @export var grab_arm : RigidBody3D
 @export var hinges : Array[HingeJoint3D]
 
+@export var stats : ClawStats
+
 @onready var drop_timer: Timer = $DropTimer
 @onready var release_timer: Timer = $ReleaseTimer
 @onready var grab_timer : Timer = $GrabTimer
-
-#Loaded by parent
-@onready var stats = owner.stats
 
 #Private Movement Variables
 var movement_mode: MovementMode = MovementMode.Manual
@@ -20,6 +20,9 @@ var target_grab_location: Vector3
 var target_raise_location: Vector3
 
 var current_grab_joint : Generic6DOFJoint3D
+
+func _init() -> void:
+	GameManager.player = self
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("ActivateClaw") and movement_mode == MovementMode.Manual:

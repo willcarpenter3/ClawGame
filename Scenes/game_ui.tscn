@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b87b0124hkkwd"]
 
-[ext_resource type="Script" uid="uid://pka3ubsr5shd" path="res://Scenes/game_ui.gd" id="1_gek4i"]
+[ext_resource type="Script" uid="uid://pka3ubsr5shd" path="res://scripts/game_ui.gd" id="1_gek4i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ftohb"]
 font_size = 72
@@ -13,3 +13,14 @@ offset_right = 359.0
 offset_bottom = 136.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_ftohb")
+
+[node name="UpgradeSpeedButton" type="Button" parent="." unique_id=339312489]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -62.0
+offset_right = 252.0
+grow_vertical = 0
+text = "Upgrade Speed"
+
+[connection signal="pressed" from="UpgradeSpeedButton" to="." method="_on_upgrade_speed_button_pressed"]

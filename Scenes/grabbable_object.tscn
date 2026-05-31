@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cm43w2emlhhue"]
 
-[ext_resource type="Script" uid="uid://5fx7j5u3hx8r" path="res://Scenes/grabbable_object.gd" id="1_hebtc"]
+[ext_resource type="Script" uid="uid://5fx7j5u3hx8r" path="res://scripts/grabbable_object.gd" id="1_hebtc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e4wic"]
 

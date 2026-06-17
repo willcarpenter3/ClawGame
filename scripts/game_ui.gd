@@ -13,3 +13,10 @@ func _on_upgrade_speed_button_pressed() -> void:
 		return
 	
 	GameManager.update_claw_speed()
+
+
+func _on_buy_auto_claw_button_pressed() -> void:
+	#if GameManager.score <= 1:
+		#return
+		
+	GameManager.buy_auto_claw()

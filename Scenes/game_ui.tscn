@@ -14,13 +14,21 @@ offset_bottom = 136.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_ftohb")
 
-[node name="UpgradeSpeedButton" type="Button" parent="." unique_id=339312489]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1271270979]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -62.0
-offset_right = 252.0
+offset_top = -40.0
+offset_right = 362.0
 grow_vertical = 0
-text = "Upgrade Speed"
 
-[connection signal="pressed" from="UpgradeSpeedButton" to="." method="_on_upgrade_speed_button_pressed"]
+[node name="UpgradeSpeedButton" type="Button" parent="HBoxContainer" unique_id=339312489]
+layout_mode = 2
+text = "Upgrade Speed (1)"
+
+[node name="BuyAutoClawButton" type="Button" parent="HBoxContainer" unique_id=935347249]
+layout_mode = 2
+text = "Buy Auto Claw (2)"
+
+[connection signal="pressed" from="HBoxContainer/UpgradeSpeedButton" to="." method="_on_upgrade_speed_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/BuyAutoClawButton" to="." method="_on_buy_auto_claw_button_pressed"]

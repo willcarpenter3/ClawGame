@@ -1,11 +1,12 @@
-[gd_scene format=3 uid="uid://brr3yjfyrxahx"]
+[gd_scene format=3 uid="uid://c2jgi2ikgn0ww"]
 
-[ext_resource type="Script" uid="uid://06b3t73f3vi8" path="res://scripts/claw.gd" id="1_bcojo"]
-[ext_resource type="PackedScene" uid="uid://bnxfs0okccxw2" path="res://Scenes/claw_spoke.tscn" id="2_p07vi"]
-[ext_resource type="Resource" uid="uid://be1ynoa4fcjw" path="res://Resources/claw_stats.tres" id="2_rnn4h"]
+[ext_resource type="Script" uid="uid://psrto7gbcfj0" path="res://scripts/auto_claw_parent.gd" id="1_1bhe5"]
+[ext_resource type="Script" uid="uid://wthdeg0yt1m4" path="res://scripts/auto_claw_mover.gd" id="1_k6pip"]
+[ext_resource type="Resource" uid="uid://be1ynoa4fcjw" path="res://Resources/claw_stats.tres" id="2_5u828"]
+[ext_resource type="PackedScene" uid="uid://bnxfs0okccxw2" path="res://Scenes/claw_spoke.tscn" id="3_he6rw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcojo"]
-albedo_color = Color(0.7059392, 3.5376102e-06, 3.85046e-07, 1)
+albedo_color = Color(0.011764706, 0, 0.7294118, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bcojo"]
 material = SubResource("StandardMaterial3D_bcojo")
@@ -19,14 +20,15 @@ material = SubResource("StandardMaterial3D_bcojo")
 [sub_resource type="BoxShape3D" id="BoxShape3D_bcojo"]
 size = Vector3(0.32388306, 0.2642212, 0.29541016)
 
-[node name="Claw" type="Node3D" unique_id=211222074]
+[node name="Auto-Claw" type="Node3D" unique_id=211222074]
+script = ExtResource("1_1bhe5")
 
 [node name="ClawMover" type="CharacterBody3D" parent="." unique_id=1510437078 node_paths=PackedStringArray("grab_arm", "hinges")]
 motion_mode = 1
-script = ExtResource("1_bcojo")
+script = ExtResource("1_k6pip")
 grab_arm = NodePath("../ClawArm")
 hinges = [NodePath("../Hinge1"), NodePath("../Hinge2"), NodePath("../Hinge3")]
-stats = ExtResource("2_rnn4h")
+stats = ExtResource("2_5u828")
 
 [node name="Joint" type="Generic6DOFJoint3D" parent="ClawMover" unique_id=1790604705]
 node_a = NodePath("..")
@@ -53,6 +55,7 @@ mesh = SubResource("BoxMesh_bcojo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ClawMover" unique_id=1549668758]
 shape = SubResource("BoxShape3D_8412e")
+disabled = true
 
 [node name="DropTimer" type="Timer" parent="ClawMover" unique_id=960163860]
 one_shot = true
@@ -95,7 +98,7 @@ angular_limit/lower = 0.0
 motor/enable = true
 motor/target_velocity = -0.87266463
 
-[node name="clawSpoke" parent="." unique_id=1255771814 instance=ExtResource("2_p07vi")]
+[node name="clawSpoke" parent="." unique_id=1255771814 instance=ExtResource("3_he6rw")]
 transform = Transform3D(0.612907, 0.3950775, 0.6842942, 0, 0.8660254, -0.49999997, -0.79015493, 0.30645353, 0.530793, -0.32942978, -3.832813, -0.2957937)
 
 [node name="Hinge2" type="HingeJoint3D" parent="." unique_id=182579536]
@@ -108,7 +111,7 @@ angular_limit/lower = 0.0
 motor/enable = true
 motor/target_velocity = -0.87266463
 
-[node name="clawSpoke2" parent="." unique_id=2141615749 instance=ExtResource("2_p07vi")]
+[node name="clawSpoke2" parent="." unique_id=2141615749 instance=ExtResource("3_he6rw")]
 transform = Transform3D(0.5635261, -0.41304916, -0.71542215, 0, 0.8660254, -0.50000006, 0.82609844, 0.28176302, 0.4880279, 0.3355645, -3.832813, -0.2716589)
 
 [node name="Hinge3" type="HingeJoint3D" parent="." unique_id=1821334933]
@@ -121,7 +124,7 @@ angular_limit/lower = 0.0
 motor/enable = true
 motor/target_velocity = -0.87266463
 
-[node name="clawSpoke3" parent="." unique_id=2141363506 instance=ExtResource("2_p07vi")]
+[node name="clawSpoke3" parent="." unique_id=2141363506 instance=ExtResource("3_he6rw")]
 transform = Transform3D(-0.99999845, -0.00087268703, -0.0015115383, 0, 0.8660254, -0.5, 0.0017453741, -0.49999923, -0.866024, 0.018832564, -3.832813, 0.41011477)
 
 [connection signal="timeout" from="ClawMover/DropTimer" to="ClawMover" method="_on_drop_timer_timeout"]

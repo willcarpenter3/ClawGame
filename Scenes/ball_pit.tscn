@@ -44,7 +44,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="Claw" parent="." unique_id=211222074 instance=ExtResource("4_s7hoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 15, 15)
 
 [node name="DropTimer" parent="Claw/ClawMover" parent_id_path=PackedInt32Array(211222074, 1510437078) index="3" unique_id=960163860]
 wait_time = 0.75

@@ -7,12 +7,24 @@ extends Node3D
 
 @onready var spawn_loc = $SpawnPath/SpawnPathLoc
 
+@onready var object_pool = %ObjectPool
 
+func _ready() -> void:
+	#populate ball pit
+	var i = 0
+	while i < 50:
+		var spawnedThing = object_pool.draw_from_pool()
+		var spawnX = randf_range(-spawnRadius, spawnRadius) + position.x
+		var spawnZ = randf_range(-spawnRadius, spawnRadius) + position.z
+		add_child(spawnedThing)
+		spawnedThing.initialize(Vector3(spawnX, position.y, spawnZ), Vector3.ONE * (1 + randf_range(-scaleRandomness, scaleRandomness)))
+		i += 1
+		
+	
 func _on_timer_timeout() -> void:
 	print("Timer going off!")
 	
-	
-	var spawnedThing = thingToSpawn.instantiate()
+	var spawnedThing = object_pool.draw_from_pool()
 	var spawnX = randf_range(-spawnRadius, spawnRadius) + position.x
 	var spawnZ = randf_range(-spawnRadius, spawnRadius) + position.z
 	

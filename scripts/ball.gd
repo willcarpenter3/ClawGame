@@ -11,4 +11,6 @@ func initialize(pos: Vector3, newScale: Vector3):
 	material.metallic = 0.75
 	mesh.material_override = material
 	
+	linear_velocity = Vector3.ZERO
+	
 	scale = newScale

@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dktsjlimlps7n"]
 
 [ext_resource type="Script" uid="uid://dcci6u3eqdxee" path="res://scripts/ball.gd" id="1_d60mj"]
+[ext_resource type="PackedScene" uid="uid://uj6wrlpuudch" path="res://Meshes/monke.glb" id="2_ij5cq"]
+[ext_resource type="PackedScene" uid="uid://cfyhbxqpuy5l4" path="res://Meshes/acfossil.glb" id="2_yk4cr"]
+[ext_resource type="PackedScene" uid="uid://dxxjgnfhbqi77" path="res://Meshes/scroll.glb" id="4_aw2wy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k285w"]
 friction = 0.2
@@ -8,10 +11,6 @@ bounce = 0.56
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k285w"]
 radius = 1.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_k285w"]
-radius = 1.0
-height = 2.0
 
 [node name="Ball" type="RigidBody3D" unique_id=913341855]
 collision_mask = 3
@@ -21,7 +20,18 @@ script = ExtResource("1_d60mj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=28343529]
 shape = SubResource("SphereShape3D_k285w")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2062106774]
-mesh = SubResource("SphereMesh_k285w")
-
 [node name="GrabJoint" type="Generic6DOFJoint3D" parent="." unique_id=1040025572]
+
+[node name="MeshContainer" type="Node3D" parent="." unique_id=335184680]
+
+[node name="acfossil" parent="MeshContainer" unique_id=1602360747 instance=ExtResource("2_yk4cr")]
+transform = Transform3D(0.34077156, 0.3920897, 0, -0.3920897, 0.34077156, 0, 0, 0, 0.5194801, 0, 0, 0)
+visible = false
+
+[node name="monke" parent="MeshContainer" unique_id=691192834 instance=ExtResource("2_ij5cq")]
+transform = Transform3D(0.7215007, 0, 0, 0, 0.7215007, 0, 0, 0, 0.7215007, 0, 0, 0)
+visible = false
+
+[node name="scroll" parent="MeshContainer" unique_id=873969832 instance=ExtResource("4_aw2wy")]
+transform = Transform3D(-1.7034374e-08, 0, -0.38970107, 0, 0.38970107, 0, 0.38970107, 0, -1.7034374e-08, 0, -0.39456105, 0)
+visible = false

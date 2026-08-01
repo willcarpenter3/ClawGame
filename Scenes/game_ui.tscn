@@ -24,11 +24,19 @@ grow_vertical = 0
 
 [node name="UpgradeSpeedButton" type="Button" parent="HBoxContainer" unique_id=339312489]
 layout_mode = 2
+disabled = true
 text = "Upgrade Speed (1)"
 
 [node name="BuyAutoClawButton" type="Button" parent="HBoxContainer" unique_id=935347249]
 layout_mode = 2
+disabled = true
 text = "Buy Auto Claw (2)"
+
+[node name="BuyBombButton" type="Button" parent="HBoxContainer" unique_id=1383029001]
+layout_mode = 2
+disabled = true
+text = "Buy Bomb (3)"
 
 [connection signal="pressed" from="HBoxContainer/UpgradeSpeedButton" to="." method="_on_upgrade_speed_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/BuyAutoClawButton" to="." method="_on_buy_auto_claw_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/BuyBombButton" to="." method="_on_buy_bomb_button_pressed"]

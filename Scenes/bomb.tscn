@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cis8jrnht64qv"]
+
+[ext_resource type="Script" uid="uid://20q2n60s5wvw" path="res://scripts/bomb.gd" id="1_yx723"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6nefg"]
+radius = 12.947795
+
+[sub_resource type="SphereMesh" id="SphereMesh_6lxjq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6lxjq"]
+
+[node name="Bomb" type="Node3D" unique_id=1917308540]
+script = ExtResource("1_yx723")
+
+[node name="Timer" type="Timer" parent="." unique_id=308321228]
+wait_time = 2.5
+autostart = true
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=431456719]
+collision_layer = 2
+
+[node name="Area3D" type="Area3D" parent="RigidBody3D" unique_id=1077585422]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Area3D" unique_id=2100617044]
+shape = SubResource("SphereShape3D_6nefg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=390716264]
+mesh = SubResource("SphereMesh_6lxjq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2079055720]
+shape = SubResource("SphereShape3D_6lxjq")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

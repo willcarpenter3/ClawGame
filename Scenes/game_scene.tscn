@@ -2,12 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://brr3yjfyrxahx" path="res://Scenes/claw.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://dktsjlimlps7n" path="res://Scenes/ball.tscn" id="2_b6fju"]
+[ext_resource type="Script" uid="uid://t0ofri3k1r32" path="res://Scenes/camera.gd" id="3_6h5vk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_05hpe"]
 size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mlf6e"]
 size = Vector3(50, 1, 50)
+
+[sub_resource type="Curve3D" id="Curve3D_b6fju"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -45, 0, -45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 0, -45),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
 
 [node name="Game" type="Node3D" unique_id=802390332]
 
@@ -22,11 +30,6 @@ mesh = SubResource("BoxMesh_mlf6e")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=23290975]
 transform = Transform3D(1, 0, 0, 0, 0.34803215, 0.9374826, 0, -0.9374826, 0.34803215, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1305866431]
-transform = Transform3D(1, 0, 0, 0, 0.99443585, 0.105344206, 0, -0.105344206, 0.99443585, 0, 34.62627, 55.60856)
-fov = 100.0
-size = 62.795
-
 [node name="Claw" parent="." unique_id=1510437078 instance=ExtResource("1_x87qo")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 50, 0)
 
@@ -34,3 +37,21 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 50, 0)
 
 [node name="Ball" parent="." unique_id=913341855 instance=ExtResource("2_b6fju")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.07291794, 5.259014, -0.1414485)
+
+[node name="Node" type="Node" parent="." unique_id=1033349099]
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1821619231]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 34.471645, 55.16479)
+curve = SubResource("Curve3D_b6fju")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1516714765]
+transform = Transform3D(-0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071067, -2.7008355e-06, 0, 0)
+progress = 63.639606
+tilt_enabled = false
+
+[node name="Camera3D" type="Camera3D" parent="Path3D/PathFollow3D" unique_id=1305866431 node_paths=PackedStringArray("path_follow_3d")]
+transform = Transform3D(-0.7071068, -0.07448961, 0.7031724, 0, 0.99443585, 0.105344206, -0.7071068, 0.07448961, -0.7031724, 0, 0, 0)
+fov = 100.0
+size = 62.795
+script = ExtResource("3_6h5vk")
+path_follow_3d = NodePath("..")

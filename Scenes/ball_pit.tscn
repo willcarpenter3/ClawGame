@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b5ea62iq5acyj"]
 
+[ext_resource type="Script" uid="uid://dyaravr8u2bqx" path="res://Scenes/camera_3d.gd" id="1_1l24r"]
 [ext_resource type="ArrayMesh" uid="uid://fpvuv2acfguj" path="res://Meshes/Cube_001.res" id="1_k285w"]
 [ext_resource type="Script" uid="uid://cuuxg7npyie4a" path="res://scripts/spawner.gd" id="2_f75nb"]
 [ext_resource type="PackedScene" uid="uid://dktsjlimlps7n" path="res://Scenes/ball.tscn" id="3_f8k4u"]
@@ -22,6 +23,7 @@ shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1484485760]
 transform = Transform3D(1, 0, 0, 0, 0.7664482, 0.6423062, 0, -0.6423062, 0.7664482, 0.7713089, 22.317379, 29.058134)
+script = ExtResource("1_1l24r")
 
 [node name="WeirdPit" type="StaticBody3D" parent="." unique_id=443175277]
 

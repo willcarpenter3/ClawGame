@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://brr3yjfyrxahx" path="res://Scenes/claw.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://dktsjlimlps7n" path="res://Scenes/ball.tscn" id="2_b6fju"]
-[ext_resource type="Script" uid="uid://t0ofri3k1r32" path="res://Scenes/camera.gd" id="3_6h5vk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_05hpe"]
 size = Vector3(50, 1, 50)
@@ -33,9 +32,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.07291794, 5.259014, -0.141
 
 [node name="Node" type="Node" parent="." unique_id=1033349099]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1305866431 node_paths=PackedStringArray("path_follow_3d")]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1305866431]
 transform = Transform3D(1, 0, 0, 0, 0.99443585, 0.105344206, 0, -0.105344206, 0.99443585, -2.7008355e-06, 34.471645, 55.16479)
 fov = 100.0
 size = 62.795
-script = ExtResource("3_6h5vk")
-path_follow_3d = NodePath("")

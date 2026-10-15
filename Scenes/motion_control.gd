@@ -1,4 +1,4 @@
-extends Camera3D
+extends Node3D
 
 
 const GYRO_SENSITIVITY = 1.0
@@ -36,6 +36,9 @@ func calibrate_motion():
 func move_object(delta):
 
 	var gyro := Input.get_joy_gyroscope(0)
-	rotation.y -= -gyro.y * GYRO_SENSITIVITY * delta  # Use rotation around the Y axis (yaw) here.
-	rotation.x += gyro.x * GYRO_SENSITIVITY * delta  # Use rotation around the X axis (pitch) here.
+	var newY = -gyro.y * GYRO_SENSITIVITY * delta # Use rotation around the Y axis (yaw) here.
+	var newX = gyro.x * GYRO_SENSITIVITY * delta  # Use rotation around the X axis (pitch) here.
+	
+	rotation.y = clamp(rotation.y - newY, -90, 90)
+	rotation.x = clamp(rotation.x - newX, -90, 90)
 	

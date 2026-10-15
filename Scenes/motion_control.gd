@@ -5,6 +5,8 @@ const GYRO_SENSITIVITY = 1.0
 const MOUSE_SENSITIVITY = 0.01
 
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
 	# In this example we only use the first connected joypad (id 0).
 	if 0 not in Input.get_connected_joypads():
 		return

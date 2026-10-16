@@ -2,10 +2,10 @@ extends Node3D
 
 
 const GYRO_SENSITIVITY = 1.0
-const MOUSE_SENSITIVITY = 0.01
+const MOUSE_SENSITIVITY = 0.1
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	# In this example we only use the first connected joypad (id 0).
 	if 0 not in Input.get_connected_joypads():
@@ -54,6 +54,8 @@ func mouse_move_object(event: InputEventMouseMotion):
 	var newX = event.screen_relative.x * MOUSE_SENSITIVITY
 	var newY = event.screen_relative.y * MOUSE_SENSITIVITY
 	
-	
-	rotation.x = clamp(rotation.x + newY, -1, 1)
-	rotation.y = clamp(rotation.y + newX, -1, 1)
+	global_rotation_degrees.x = clamp(global_rotation_degrees.x + newY, -90, 90)
+	global_rotation_degrees.y = clamp(global_rotation_degrees.y + newX, -90, 90)
+
+	print(global_rotation)
+	print(rotation_degrees)

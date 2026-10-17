@@ -5,7 +5,7 @@ const GYRO_SENSITIVITY = 1.0
 const MOUSE_SENSITIVITY = 0.1
 
 func _ready():
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	# In this example we only use the first connected joypad (id 0).
 	if 0 not in Input.get_connected_joypads():
@@ -26,6 +26,9 @@ func _process(delta):
 	# Only move the object if the joypad motion sensors are calibrated.
 	if Input.is_joy_motion_sensors_calibrated(0):
 		gyro_move_object(delta)
+		
+	if Input.is_action_pressed("ui_cancel"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _input(event: InputEvent):
 	if Input.is_joy_motion_sensors_calibrated(0):
@@ -54,8 +57,7 @@ func mouse_move_object(event: InputEventMouseMotion):
 	var newX = event.screen_relative.x * MOUSE_SENSITIVITY
 	var newY = event.screen_relative.y * MOUSE_SENSITIVITY
 	
-	global_rotation_degrees.x = clamp(global_rotation_degrees.x + newY, -90, 90)
+	global_rotation_degrees.x = clamp(global_rotation_degrees.x + newY, -50, 25)
 	global_rotation_degrees.y = clamp(global_rotation_degrees.y + newX, -90, 90)
 
-	print(global_rotation)
-	print(rotation_degrees)
+	print(global_rotation_degrees)
